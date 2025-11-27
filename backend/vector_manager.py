@@ -1,8 +1,8 @@
 # vector_manager.py
 
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
-from langchain.schema import Document
+from langchain_community.llms import OpenAI
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
 import json
 import os
 
@@ -18,7 +18,7 @@ class VectorManager:
         else:
             self.db = Chroma.from_texts([], embedding=self.embeddings, persist_directory=CHROMA_DIR)
 
-    def index_documents(self, jsonl_path="data/parts.jsonl"):
+    def index_documents(self, jsonl_path="../data/parts.jsonl"):
         docs = []
         with open(jsonl_path, "r") as f:
             for line in f:
